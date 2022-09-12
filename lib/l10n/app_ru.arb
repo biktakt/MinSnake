@@ -1,0 +1,20 @@
+{
+    "play": "Играть",
+    "mainMenu": "Главное меню",
+    "settings": "Настройки",
+    "playAgain": "Играть снова",
+    "snake": "Змеюка",
+    "score": "Счет",
+    "gameOver": "КОНЕЦ ИГРЫ",
+    "start": "Играть",
+    "resume": "Возобновить",
+    "enterName": "Введите ваше имя",
+    "leaderboard": "Рекорды",
+    "depecheMode": "Режим Депеш",
+    "toggleTheme": "Сменить тему",
+    "clearLeaderboard": "Очистить Рекорды",
+    "clearLeaderboard_alert_title": "Отчистить Рекорды",
+    "clearLeaderboard_alert_text": "Это действие удалит все существующие рекорды. Вы уверены?",
+    "clearLeaderboard_alert_yes": "Да",
+    "clearLeaderboard_alert_cancel": "Отмена"
+}

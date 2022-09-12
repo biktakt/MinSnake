@@ -1,0 +1,20 @@
+{
+    "play": "Play",
+    "mainMenu": "Main Menu",
+    "settings": "Settings",
+    "playAgain": "Play Again",
+    "snake": "Snake",
+    "score": "Score",
+    "gameOver": "GAME OVER",
+    "start": "Start",
+    "resume": "Resume",
+    "enterName": "Enter your name",
+    "leaderboard": "Leaderboard",
+    "depecheMode": "Depeche Mode",
+    "toggleTheme": "Change theme",
+    "clearLeaderboard": "Clear Leaderboard",
+    "clearLeaderboard_alert_title": "Clear Leaderboard",
+    "clearLeaderboard_alert_text": "This action will delete all existing leaderboards. Are you sure?",
+    "clearLeaderboard_alert_yes": "Yes",
+    "clearLeaderboard_alert_cancel": "Cancel"
+}
