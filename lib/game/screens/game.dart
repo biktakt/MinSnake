@@ -1,12 +1,9 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:provider/provider.dart';
-import 'package:snake/game/screens/settings/settings_widget_model.dart';
 import 'package:snake/models/grid.dart';
 import 'package:snake/game/hive_box.dart';
 import 'package:snake/game/screens/pause_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:snake/game/snake.dart';
-import 'package:snake/resources/app_images.dart';
 import '../../theme/colors.dart';
 import 'dart:async';
 import '../../models/point.dart';
@@ -25,11 +22,9 @@ class _SnakeGameState extends State<SnakeGame> {
   late Timer timer;
   TextEditingController playerNameController = TextEditingController();
   final FocusNode _gridFocusNode = FocusNode();
-  late final bool isDepecheMode;
 
   List<Tile> getGrid() {
     Color? color;
-    AssetImage? image;
     List<Tile> grids = [];
     PointTile pointTile;
     for (int i = 0; i < Grid.height; i++) {
@@ -38,23 +33,15 @@ class _SnakeGameState extends State<SnakeGame> {
         if (snake.body.contains(pointTile)) {
           if (snake.body[0] == pointTile) {
             color = Theme.of(context).colorScheme.snakeHead;
-            image = AppImages.depecheMembers[snake.body.indexOf(pointTile) %
-                AppImages.depecheMembers.length];
           } else {
             color = Theme.of(context).colorScheme.snake;
-            image = AppImages.depecheMembers[snake.body.indexOf(pointTile) %
-                AppImages.depecheMembers.length];
           }
         } else if (snake.food == pointTile) {
           color = Theme.of(context).colorScheme.food;
-          image = AppImages.depecheInstrumental[
-              snake.body.length % AppImages.depecheInstrumental.length];
         } else {
           color = Theme.of(context).colorScheme.tileColor;
-          image = null;
         }
-        image = isDepecheMode ? image : null;
-        grids.add(Tile(color, image));
+        grids.add(Tile(color));
       }
     }
     return grids;
@@ -69,7 +56,7 @@ class _SnakeGameState extends State<SnakeGame> {
   }
 
   void gameStart() {
-    final tickRate = Duration(milliseconds: 200 - snake.speed);
+    const tickRate = Duration(milliseconds: 200);
     timer = Timer.periodic(tickRate, (timer) => onTimer());
   }
 
@@ -145,9 +132,7 @@ class _SnakeGameState extends State<SnakeGame> {
 
   @override
   void initState() {
-    SettingsWidgetModel settingsModel = context.read<SettingsWidgetModel>();
     snake = Snake.randomSpawn();
-    isDepecheMode = settingsModel.depecheMode;
     super.initState();
     gameStart();
   }
@@ -220,8 +205,7 @@ class _SnakeGameState extends State<SnakeGame> {
 
 class Tile extends StatelessWidget {
   final Color? color;
-  final AssetImage? image;
-  const Tile(this.color, this.image, {Key? key}) : super(key: key);
+  const Tile(this.color, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -230,19 +214,8 @@ class Tile extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: color,
-          image: _checkImage(image),
         ),
       ),
     );
-  }
-
-  static DecorationImage? _checkImage(AssetImage? image) {
-    if (image != null) {
-      return DecorationImage(
-        image: image,
-        fit: BoxFit.cover,
-      );
-    }
-    return null;
   }
 }

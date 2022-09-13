@@ -26,8 +26,6 @@ dev_dependencies:
 flutter:
   generate: true
   uses-material-design: true
-  assets:
-    - assets/images/depeche_mode/
   fonts:
     - family: LetoTextSans
       fonts:

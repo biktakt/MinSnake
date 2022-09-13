@@ -7,7 +7,6 @@ import '../models/point.dart';
 class Snake {
   List<PointTile> body = [];
   Direction direction = Direction.down;
-  int speed = 0;
   PointTile food = const PointTile(-1, -1);
 
   PointTile get head => body[0];
@@ -16,7 +15,6 @@ class Snake {
   Snake.randomSpawn() {
     final random = Random();
     direction = Direction.values[random.nextInt(4)];
-    speed = 0;
     int x = random.nextInt(Grid.width);
     int y = random.nextInt(Grid.height);
     PointTile tail = PointTile(x, y);
@@ -40,9 +38,6 @@ class Snake {
     if (head == food) {
       body.add(tail);
       food = spawnNewFood();
-      // if (score % 5 == 0) {
-      //   speed += 5;
-      // }
     }
     if (body.skip(1).contains(head)) {
       return false;

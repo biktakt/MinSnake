@@ -61,17 +61,6 @@ class _SettingsState extends State<Settings> {
                     icon: const Icon(Icons.brightness_4)),
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(appLocalizations.depecheMode),
-                Switch(
-                  value:
-                      context.select((SettingsWidgetModel m) => m.depecheMode),
-                  onChanged: (_) => settings.toggleDepecheMode(),
-                ),
-              ],
-            ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
               onPressed: showClearLeaderboardDialog,
