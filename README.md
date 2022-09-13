@@ -2,6 +2,11 @@
 
 Flutter minimalistic snake.
 
+Features:
+- theme change
+- Languages supported: English, Russian
+- record keeping
+---
 ### Над проектом работали
 - https://github.com/biktakt
 - https://github.com/GN1kko
