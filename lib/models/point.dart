@@ -1,4 +1,4 @@
-import 'package:snake/models/grid.dart';
+import 'grid.dart';
 
 class PointTile {
   final int x;

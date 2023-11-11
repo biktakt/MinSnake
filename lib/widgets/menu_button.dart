@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 class MenuButton extends StatelessWidget {
   final Text text;
   final VoidCallback? onPressed;
-  const MenuButton({Key? key, required this.text, required this.onPressed})
-      : super(key: key);
+  const MenuButton({super.key, required this.text, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {

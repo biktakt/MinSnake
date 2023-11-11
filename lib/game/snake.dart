@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:snake/models/grid.dart';
+import '../models/grid.dart';
 import '../models/point.dart';
 
 class Snake {
@@ -17,9 +17,9 @@ class Snake {
     final random = Random();
     direction = Direction.values[random.nextInt(4)];
     speed = 0;
-    int x = random.nextInt(Grid.width);
-    int y = random.nextInt(Grid.height);
-    PointTile tail = PointTile(x, y);
+    final int x = random.nextInt(Grid.width);
+    final int y = random.nextInt(Grid.height);
+    final PointTile tail = PointTile(x, y);
     body = [tail + direction.point * 2, tail + direction.point, tail];
     food = spawnNewFood();
   }

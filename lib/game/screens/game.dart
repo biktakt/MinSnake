@@ -1,18 +1,20 @@
+import 'dart:async';
+
+import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:snake/game/screens/settings/settings_widget_model.dart';
-import 'package:snake/models/grid.dart';
-import 'package:snake/game/hive_box.dart';
-import 'package:snake/game/screens/pause_menu.dart';
-import 'package:flutter/material.dart';
-import 'package:snake/game/snake.dart';
-import 'package:snake/resources/app_images.dart';
-import '../../theme/colors.dart';
-import 'dart:async';
+
+import '../../models/grid.dart';
 import '../../models/point.dart';
+import '../../resources/app_images.dart';
+import '../../services/score_board_hive_box.dart';
+import '../../theme/colors.dart';
+import '../snake.dart';
+import 'pause_menu.dart';
+import 'settings/settings_widget_model.dart';
 
 class SnakeGame extends StatefulWidget {
-  const SnakeGame({Key? key}) : super(key: key);
+  const SnakeGame({super.key});
 
   @override
   State<SnakeGame> createState() => _SnakeGameState();
@@ -25,12 +27,13 @@ class _SnakeGameState extends State<SnakeGame> {
   late Timer timer;
   TextEditingController playerNameController = TextEditingController();
   final FocusNode _gridFocusNode = FocusNode();
+  // TODO: Change the image substitution method
   late final bool isDepecheMode;
 
   List<Tile> getGrid() {
     Color? color;
     AssetImage? image;
-    List<Tile> grids = [];
+    final List<Tile> grids = [];
     PointTile pointTile;
     for (int i = 0; i < Grid.height; i++) {
       for (int j = 0; j < Grid.width; j++) {
@@ -128,9 +131,9 @@ class _SnakeGameState extends State<SnakeGame> {
                   TextButton(
                     onPressed: onPlayAgain,
                     child: Text(AppLocalizations.of(context).playAgain),
-                  )
+                  ),
                 ],
-              )
+              ),
             ],
           ),
         );
@@ -145,7 +148,8 @@ class _SnakeGameState extends State<SnakeGame> {
 
   @override
   void initState() {
-    SettingsWidgetModel settingsModel = context.read<SettingsWidgetModel>();
+    final SettingsWidgetModel settingsModel =
+        context.read<SettingsWidgetModel>();
     snake = Snake.randomSpawn();
     isDepecheMode = settingsModel.depecheMode;
     super.initState();
@@ -154,7 +158,7 @@ class _SnakeGameState extends State<SnakeGame> {
 
   Future<bool> pauseGame() async {
     timer.cancel();
-    var result = await Navigator.of(context).push(
+    final result = await Navigator.of(context).push(
       PageRouteBuilder(
         opaque: false,
         pageBuilder: (BuildContext context, _, __) => const PauseMenu(),
@@ -176,22 +180,30 @@ class _SnakeGameState extends State<SnakeGame> {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(
-                      top: 20.0, left: 20, right: 20, bottom: 10.0),
+                    top: 20.0,
+                    left: 20,
+                    right: 20,
+                    bottom: 10.0,
+                  ),
                   child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          '${AppLocalizations.of(context).score}: $score',
-                        ),
-                        GestureDetector(
-                          onTap: pauseGame,
-                          child: const Icon(Icons.pause_rounded),
-                        ),
-                      ]),
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '${AppLocalizations.of(context).score}: $score',
+                      ),
+                      GestureDetector(
+                        onTap: pauseGame,
+                        child: const Icon(Icons.pause_rounded),
+                      ),
+                    ],
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
-                      bottom: 10.0, left: 10.0, right: 10.0),
+                    bottom: 10.0,
+                    left: 10.0,
+                    right: 10.0,
+                  ),
                   child: RawKeyboardListener(
                     focusNode: _gridFocusNode,
                     onKey: _handleKeyEvent,
@@ -199,13 +211,14 @@ class _SnakeGameState extends State<SnakeGame> {
                       onVerticalDragUpdate: snake.changeDirectionSwipe,
                       onHorizontalDragUpdate: snake.changeDirectionSwipe,
                       child: GridView.count(
-                          primary: false,
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          crossAxisCount: Grid.width,
-                          crossAxisSpacing: 4,
-                          mainAxisSpacing: 4,
-                          children: getGrid()),
+                        primary: false,
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        crossAxisCount: Grid.width,
+                        crossAxisSpacing: 4,
+                        mainAxisSpacing: 4,
+                        children: getGrid(),
+                      ),
                     ),
                   ),
                 ),
@@ -221,7 +234,7 @@ class _SnakeGameState extends State<SnakeGame> {
 class Tile extends StatelessWidget {
   final Color? color;
   final AssetImage? image;
-  const Tile(this.color, this.image, {Key? key}) : super(key: key);
+  const Tile(this.color, this.image, {super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:snake/widgets/menu_button.dart';
+import '../../widgets/menu_button.dart';
 
 class PauseMenu extends StatefulWidget {
-  const PauseMenu({Key? key}) : super(key: key);
+  const PauseMenu({super.key});
 
   @override
   State<PauseMenu> createState() => _PauseMenuState();

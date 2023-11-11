@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:snake/game/screens/game.dart';
-import 'package:snake/game/screens/main_menu.dart';
-import 'package:snake/game/screens/score_board_widget.dart';
-import 'package:snake/game/screens/settings/settings_widget.dart';
-import 'package:snake/theme/custom_theme.dart';
-import 'package:snake/game/screens/settings/settings_widget_model.dart';
+import 'game/screens/game.dart';
+import 'game/screens/main_menu.dart';
+import 'game/screens/score_board_widget.dart';
+import 'game/screens/settings/settings_widget.dart';
+import 'game/screens/settings/settings_widget_model.dart';
+import 'theme/custom_theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +19,7 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
 }
 
 class RootWidget extends StatelessWidget {
-  const RootWidget({Key? key}) : super(key: key);
+  const RootWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

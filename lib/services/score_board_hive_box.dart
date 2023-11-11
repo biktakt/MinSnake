@@ -21,7 +21,8 @@ class ScoreBoard {
   static Map<dynamic, int> getLeaderboard() {
     final dict = _box.toMap();
     final sortedValuesDesc = Map<dynamic, int>.fromEntries(
-        dict.entries.toList()..sort((e2, e1) => e1.value.compareTo(e2.value)));
+      dict.entries.toList()..sort((e2, e1) => e1.value.compareTo(e2.value)),
+    );
     return sortedValuesDesc;
   }
 }

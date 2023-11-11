@@ -1,25 +1,28 @@
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:snake/game/hive_box.dart';
-import 'package:snake/widgets/bottom_app_bar_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../services/score_board_hive_box.dart';
+import '../../widgets/bottom_app_bar_button.dart';
 
 class ScoreBoardWidget extends StatelessWidget {
-  const ScoreBoardWidget({Key? key}) : super(key: key);
+  const ScoreBoardWidget({super.key});
 
   List<Widget> getScores() {
-    List<Widget> scores = [];
+    final List<Widget> scores = [];
     final sortedScores = ScoreBoard.getLeaderboard();
     for (var name in sortedScores.keys) {
-      scores.add(Padding(
-        padding: const EdgeInsets.only(bottom: 10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(child: Text(name)),
-            Text(sortedScores[name].toString()),
-          ],
+      scores.add(
+        Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(child: Text(name)),
+              Text(sortedScores[name].toString()),
+            ],
+          ),
         ),
-      ));
+      );
     }
     return scores;
   }

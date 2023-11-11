@@ -5,10 +5,9 @@ class CustomTheme {
     return ThemeData(
       fontFamily: 'LetoTextSans',
       scaffoldBackgroundColor: const Color(0xFFd2e4f7),
-      backgroundColor: const Color(0xFFd2e4f7),
       textTheme: const TextTheme(
-        bodyText2: TextStyle(fontSize: 24),
-        button: TextStyle(fontSize: 20),
+        bodyMedium: TextStyle(fontSize: 24),
+        labelLarge: TextStyle(fontSize: 20),
       ),
       dialogTheme: const DialogTheme(
         titleTextStyle: TextStyle(fontSize: 22, color: Colors.black),
@@ -22,10 +21,9 @@ class CustomTheme {
       brightness: Brightness.dark,
       fontFamily: 'LetoTextSans',
       scaffoldBackgroundColor: Colors.black,
-      backgroundColor: Colors.black,
       textTheme: const TextTheme(
-        bodyText2: TextStyle(color: Colors.white, fontSize: 24),
-        button: TextStyle(fontSize: 20),
+        bodyMedium: TextStyle(color: Colors.white, fontSize: 24),
+        labelLarge: TextStyle(fontSize: 20),
       ),
       dialogTheme: const DialogTheme(
         titleTextStyle: TextStyle(fontSize: 22),
@@ -42,8 +40,7 @@ class CustomTheme {
         Shadow(
           blurRadius: 30.0,
           color: Colors.green,
-          offset: Offset(0, 0),
-        )
+        ),
       ],
     );
   }
